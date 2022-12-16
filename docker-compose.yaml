@@ -1,0 +1,23 @@
+services:
+  svelteDash:
+    image: sveltedash
+    hostname: sveltedash 
+    ports:
+      - "3000:3000"
+    networks:
+      - sveltenw 
+    depends_on:
+      - "postgresdb"
+  postgresdb:
+    image: postgres:latest
+    ports:
+      - "5431:5431"
+    volumes:
+      - /home/postgres-data:/var/lib/postgresql/data
+    networks:
+      - sveltenw
+    environment:
+      POSTGRES_PASSWORD: 1234 
+networks:
+  sveltenw:
+    name: sveltenw 
