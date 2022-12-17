@@ -1,9 +1,9 @@
 <script>
-    import ScatterChart from "$lib/ScatterChart.svelte";
-    import Histogram from "$lib/Histogram.svelte";
+  import ScatterChart from "$lib/ScatterChart.svelte";
+  import Histogram from "$lib/Histogram.svelte";
 	import HistoScatter from "$lib/HistoScatter.svelte";
-    export let data;
-    //console.log(data.chartData[0].data)
+  export let data;
+  //console.log(data.chartData[0].data)
 	//console.log(data.chartData[1].data)
 </script>
 

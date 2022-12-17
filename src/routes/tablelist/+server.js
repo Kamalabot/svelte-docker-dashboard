@@ -1,5 +1,5 @@
 export const GET = async({request, locals})=>{
-    console.log('Requesting all available tables from database');
+    console.log('Requesting postgres to provide data');
      
     const {sql} = locals;
      

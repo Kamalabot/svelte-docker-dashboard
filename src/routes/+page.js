@@ -11,15 +11,16 @@ export const load = async ({fetch})=>{
         'Content-Type': 'application/json;charset=UTF-8'
       },
       body: JSON.stringify({
-        tableName: "factCovid"
+        tableName: "factcovid"
       })
     };
-    const res = await fetch('https://api.covidtracking.com/v1/us/daily.json')
+    const res = await fetch(url,options)
     const dataRecd = await res.json()
-    const parsedData = parsers.historicUS(dataRecd)
+    const parsedData = parsers.historicUS(dataRecd.yourTable)
     return parsedData
   }
     
+  //console.log(fetchData())
   return {
       chartData: fetchData(),
       color:'green',
