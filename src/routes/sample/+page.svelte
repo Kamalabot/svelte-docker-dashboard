@@ -7,16 +7,17 @@
   import PieChart from "$lib/PieChart.svelte";
   import {rollups} from "d3"
   export let data;
-    //console.log(data.chartData[0].data)
-  
+  //console.log(data.covidData)
+  //console.log(data.bseData)
+  //console.log(data.pypiData)
+  //console.log(data.athleteData)
+  //console.log(data.fmcgData)
+ //console.log(data.irisData)
   let pyData = data.pypiData.rows
   let filterPyData = pyData.filter(d => d['download_count'] < 200000)
-  var csvPyData = data.csvData.data  
-  // console.log(csvPyData,'entryData')
-  var athleteData = data.csvData.data1.slice(0,20)
-  //console.log(athleteData,'AthleteData')		
-  var athleteCount = rollups(data.csvData.data1, g => g.length, d => d.sport)
-  //console.log(athleteCount)
+  var irisData = data.irisData  
+  var athleteData = data.athleteData.slice(0,20)
+  var athleteCount = rollups(data.athleteData, g => g.length, d => d.sport)
 													
 </script>
 
@@ -33,13 +34,13 @@
 
 <div class="flex w-full">
   <div class="grid flex-grow card bg-base-300 rounded-box place-items-center">
-    <ScatterChart width={400} height={300} chartData={data.chartData[0].data} xVar={data.xVar} yVar={data.yVar} color={data.color} label={data.title}  class="max-w-sm rounded-lg shadow-2xl"/>	
+    <ScatterChart width={400} height={300} chartData={data.covidData} xVar={data.xVar} yVar={data.yVar} color={data.color} label={data.title}  class="max-w-sm rounded-lg shadow-2xl"/>	
 	 <h1 class="text-2xl font-bold">ScatterPlot US Covid Data</h1>
   </div>
   <div class="divider divider-horizontal">|</div>
   <div class="grid flex-grow card bg-base-300 rounded-box place-items-center">
-    <ScatterChart width={400} height={300} chartData={csvPyData} xVar={"Sepal_Length"} yVar={"Petal_Length"} color={"blue"} label={"Iris Data"}  class="max-w-sm rounded-lg shadow-2xl"/>	
-	 <h1 class="text-2xl font-bold">ScatterPlot US Covid Data</h1>
+    <ScatterChart width={400} height={300} chartData={irisData} xVar={"Sepal_Length"} yVar={"Petal_Length"} color={"blue"} label={"Iris Data"}  class="max-w-sm rounded-lg shadow-2xl"/>	
+	 <h1 class="text-2xl font-bold">ScatterPlot of the infamous Iris Data</h1>
   </div>
 </div>
 <div class="divider divider-vertical">|</div>
@@ -50,7 +51,7 @@
   </div>
   <div class="divider divider-horizontal">|</div>
   <div class="grid flex-grow card bg-base-300 rounded-box place-items-center">
-    <Histogram width={400} height={300} chartData={csvPyData} Var={'Sepal_Length'} Bins={10} color={data.color} label={'Histogram of Sepal Length'}  class="max-w-sm rounded-lg shadow-2xl"/>	
+    <Histogram width={400} height={300} chartData={irisData} Var={'Sepal_Length'} Bins={10} color={data.color} label={'Histogram of Sepal Length'}  class="max-w-sm rounded-lg shadow-2xl"/>	
     <h1 class="text-2xl font-bold">Histogram of Iris Dataset</h1>
   </div>
 </div>
