@@ -42,13 +42,5 @@
         
         When multiple types of visualisation is required on the same canvas to show a particular phenomenon, like shown above the libraries require us to understand the data. And the how the library abstracts 
         the data into visualisation.
-		
-		Here is the above multi-visual chart for a different data.
     </p>
-	<div class="grid flex-grow card bg-base-300 rounded-box place-items-center">
-		<h3 class="text-2xl font-bold">Viz2 Histogram & Scatterplot</h3>	
-		<HistoScatter width={700} height={500} chartData={data.chartData[1].data} Var={data.yVar} refVar={data.xVar} Bins={10} histoColor={data.color} scatterColor={'orange'} class="max-w-sm rounded-lg shadow-2xl"/>
 	</div>
-    <h3 class="text-2xl font-bold">Inspiration</h3>
-    <p class="py-6">I am deeply inspired by the Ian Holtz and his <a href="https://d3-graph-gallery.com/">D3 Graph Gallery.</a> repo which contains more than 300 charts. I depend a lot on <a href="https://www.d3indepth.com/">D3 In Depth reference</a> Mike and Rich the creators of D3 and Svelte have been a great source of knowledge and made the life of developers a little more easier.</p>
-</div>
