@@ -9,6 +9,7 @@
   
   let companyFilteredByIncome = data.fmcgData[3]
   let companyByIncome = data.fmcgData[0]
+  console.log(companyFilteredByIncome)
   console.log(companyByIncome)
   let companies = data.fmcgData[1]
   let qtrs = data.fmcgData[2]

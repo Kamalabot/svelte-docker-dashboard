@@ -18,31 +18,26 @@ export const load = async ({fetch})=>{
             };
             const res = await fetch(url,options)
             const fmcgRecd = await res.json()
-            console.log(fmcgRecd)
-            const companyByIncome = fmcgRecd.map(d => ({
-                Company_Name: d['Company Name'],
-                qtr: d.Quarter,
-                TotalIncome: Number(d['Total Income'])
+      //:console.log(fmcgRecd)
+            const companyByIncome = fmcgRecd.yourTable.map(d => ({
+                Company_Name: d['companyname'],
+                qtr: d.quarter,
+              TotalIncome: Number(d['totalincome'])
               }))
-
-            const companyfilteredbyincome = fmcgRecd	
-              .filter(d => d.quarter == "q4 2019")
-              .map(d => ({
-              company_name: d['company name'],
-              total_income: number(d['total income']),
-              industry:d['industry'],
-              net_profit:number(d['net profit  loss  from ordinary activities after tax'])
-              }))
+            const companyFilteredByIncome = fmcgRecd.yourTable
+                .filter(d => d.quarter == "Q4 2019")
+                .map(d => ({
+                Company_Name: d['companyname'],
+                Total_Income: Number(d['totalincome']),
+                Industry:d['industry'],
+                Net_Profit:Number(d['NetProfitLossfromOrdinaryActivitiesafterTax'])
+                }))
             const companies = [...new Set(companyByIncome.map(d => d.Company_Name))]
             const qtr = [...new Set(companyByIncome.map(d => d.qtr))]
-            fmcgArray = [companyByIncome,companies,qtr,companyfilteredbyincome] 
+            const fmcgArray = [companyByIncome,companies,qtr,companyFilteredByIncome] 
             return fmcgArray
           }
     return {
-        fmcgData: fmcgCompany(),
-        color:'green',
-        title:'Covid Status in US',
-        xVar:'x',
-        yVar:'y'
+        fmcgData: fmcgCompany()
     };
 }; 
