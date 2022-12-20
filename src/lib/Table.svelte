@@ -1,6 +1,6 @@
 <script>
   export let fileData
-  console.log(fileData,'start')
+  //console.log(fileData,'start')
 </script>
 
 <style>
@@ -24,7 +24,7 @@
 		  <tbody>
 			{#each fileData as line}
 			  <tr class="striped--near-white">
-				<td class="pv2 ph3"><a>{line.table_name}</a></td>
+				<td class="pv2 ph3"><a href="/dataset/{line.table_name}">{line.table_name}</a></td>
 			  </tr>
 			{/each}
 		  </tbody>

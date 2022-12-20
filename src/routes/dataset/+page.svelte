@@ -1,7 +1,7 @@
 <script>
 	import Table from "$lib/Table.svelte";
   export let data;
-	console.log(data.tableData)
+	//console.log(data.tableData)
   var tablename = data.tableData.tableNames
 </script>
 
