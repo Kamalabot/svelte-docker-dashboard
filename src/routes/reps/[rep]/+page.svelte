@@ -15,9 +15,9 @@
 	}
 	export let data;
 	
-	const reps = data.csvData.reps
-	const repsData = data.csvData.repsData
-	
+	const reps = data.storeSD.reps
+	const repsData = data.storeSD.storeData
+  console.log('repsdata: ',repsData)	
 	//group data
     var dayList = d3.rollups(repsData,v => v.length,d => d.weekDays).map(d => d[0]);
 	
@@ -47,7 +47,7 @@
 	 			sales: sumSeries(repsData,'totalSales',c,'product'),
 				cost: sumSeries(repsData,'cost',c,'product')
 			})).sort((a,b) => d3.descending(a.sales, b.sales)).slice(0,10)
-	console.log(pdtPerformance)
+	//console.log(pdtPerformance)
 	
 </script>	
 
