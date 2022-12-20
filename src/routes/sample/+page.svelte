@@ -6,14 +6,14 @@
   import LineChart from "$lib/LineChart.svelte";
   import PieChart from "$lib/PieChart.svelte";
   import {rollups} from "d3"
+  import pypidata from "$lib/top-pypi-packages-30-days.json"
+  //import bseData from "$lib/bseScripts.json"
   export let data;
-  //console.log(data.covidData)
-  //console.log(data.bseData)
-  //console.log(data.pypiData)
+  console.log(data.covidData)
   //console.log(data.athleteData)
-  //console.log(data.fmcgData)
- //console.log(data.irisData)
-  let pyData = data.pypiData.rows
+  //console.log(data.irisData)
+  //console.log(pypidata)
+  let pyData = pypidata.rows
   let filterPyData = pyData.filter(d => d['download_count'] < 200000)
   var irisData = data.irisData  
   var athleteData = data.athleteData.slice(0,20)
@@ -34,7 +34,7 @@
 
 <div class="flex w-full">
   <div class="grid flex-grow card bg-base-300 rounded-box place-items-center">
-    <ScatterChart width={400} height={300} chartData={data.covidData} xVar={data.xVar} yVar={data.yVar} color={data.color} label={data.title}  class="max-w-sm rounded-lg shadow-2xl"/>	
+    <ScatterChart width={400} height={300} chartData={data.covidData.data} xVar={data.xVar} yVar={data.yVar} color={data.color} label={data.title}  class="max-w-sm rounded-lg shadow-2xl"/>	
 	 <h1 class="text-2xl font-bold">ScatterPlot US Covid Data</h1>
   </div>
   <div class="divider divider-horizontal">|</div>

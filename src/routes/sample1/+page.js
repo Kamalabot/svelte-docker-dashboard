@@ -3,46 +3,43 @@ import parsers from "$lib/parsers"
 import { csv } from "d3"
 
 export const load = async ({fetch})=>{
-    
-    const fetchData = async() =>{
-        const res = await fetch('https://api.covidtracking.com/v1/us/daily.json')
-        const dataRecd = await res.json()
-        const parsedData = parsers.historicUS(dataRecd)
-        return parsedData
-    }
 
-    const irisData = async() =>{
-        const res = await fetch('/bseScripts.json')
-        const dataRecd = await res.json()
-        return dataRecd
-    }
+    const fmcgCompany = async() =>{
+              const url = 'http://localhost:5173/dbtable';
+              const options = {
+                method: 'POST',
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json;charset=UTF-8'
+                },
+                body: JSON.stringify({
+                  tableName: "fmcgindia"
+                })
+            };
+            const res = await fetch(url,options)
+            const fmcgRecd = await res.json()
+            console.log(fmcgRecd)
+            const companyByIncome = fmcgRecd.map(d => ({
+                Company_Name: d['Company Name'],
+                qtr: d.Quarter,
+                TotalIncome: Number(d['Total Income'])
+              }))
 
-    const pyPiDownloads = async() =>{
-        const res = await fetch('/top-pypi-packages-30-days.json')
-        const pkgDownload = await res.json()
-        return pkgDownload
-    }
-
-    const csvData = async() =>{
-        const res = await fetch('/serveCSV')
-        const csvServed = await res.json()
-//		console.log(csvServed.data[0], csvServed.data1[0])
-        return csvServed
-    }
-	
-	 const complexData = async() =>{
-        const res = await fetch('/serveComplex')
-        const csvSimple = await res.json()
-//		console.log(csvServed.data[0], csvServed.data1[0])
-        return csvSimple
-    }
-    
+            const companyfilteredbyincome = fmcgRecd	
+              .filter(d => d.quarter == "q4 2019")
+              .map(d => ({
+              company_name: d['company name'],
+              total_income: number(d['total income']),
+              industry:d['industry'],
+              net_profit:number(d['net profit  loss  from ordinary activities after tax'])
+              }))
+            const companies = [...new Set(companyByIncome.map(d => d.Company_Name))]
+            const qtr = [...new Set(companyByIncome.map(d => d.qtr))]
+            fmcgArray = [companyByIncome,companies,qtr,companyfilteredbyincome] 
+            return fmcgArray
+          }
     return {
-        chartData: fetchData(),
-        irisData: irisData(),
-        pypiData: pyPiDownloads(), 
-        csvData: csvData(),
-		complexData: complexData(),
+        fmcgData: fmcgCompany(),
         color:'green',
         title:'Covid Status in US',
         xVar:'x',

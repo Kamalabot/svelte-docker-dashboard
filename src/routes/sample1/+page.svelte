@@ -6,21 +6,12 @@
 	
   import {rollups, timeParse, extent} from "d3"
   export let data;
-    //console.log(data.chartData[0].data)
   
-  let fmcgCompany = data.csvData.data3
-  let companyFilteredByIncome = fmcgCompany	
-	  .filter(d => d.Quarter == "Q4 2019")
-	  .map(d => ({
-		Company_Name: d['Company Name'],
-		Total_Income: Number(d['Total Income']),
-		Industry:d['Industry'],
-		Net_Profit:Number(d['Net Profit  Loss  from Ordinary Activities after Tax'])
-	  }))
-  let companyByIncome = data.csvData.data4[0]
+  let companyFilteredByIncome = data.fmcgData[3]
+  let companyByIncome = data.fmcgData[0]
   console.log(companyByIncome)
-  let companies = data.csvData.data4[1]
-  let qtrs = data.csvData.data4[2]
+  let companies = data.fmcgData[1]
+  let qtrs = data.fmcgData[2]
   
 </script>
 
