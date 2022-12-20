@@ -1,10 +1,26 @@
 <script>
 	import Table from "$lib/Table.svelte";
+  import SvelteTable from "svelte-table"
   export let data;
 	console.log(data.tableData)
   var tablename = data.tableList
-  var tableData = data.tableData
-</script>
+  var tableData = data.tableData.slice(0,5)
+  console.log('svelteData',tableData)
+  var columns = []
+  //Looping through the keys of the table data.
+  const data_keys = Object.keys(tableData[0])
+  console.log(data_keys)
+  for (let key of data_keys){
+    let spec = {
+      key: key,
+      title: key,
+      value: v => v[key],
+      sortable: true,
+      headerClass: "text-center" 
+    }
+    columns.push(spec)
+  }
+  </script>
 
 <h1 data-theme="cmyk" class="text-5x1 font-bold text-center">List of Datasets present in the Database</h1>
 
@@ -16,3 +32,4 @@
 </div>
 
 <Table fileData={tablename} /> 
+<SvelteTable columns="{columns}" rows="{tableData}" />

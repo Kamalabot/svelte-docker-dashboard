@@ -17,7 +17,7 @@ export const load = async ({params,fetch})=>{
        };
       const res = await fetch(url,options)
       const dataServed = await res.json()
-      console.log(dataServed)
+      //console.log(dataServed)
 			return dataServed.yourTable
 
       }
