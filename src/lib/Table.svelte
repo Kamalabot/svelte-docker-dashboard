@@ -1,6 +1,6 @@
 <script>
   export let fileData
-//  console.log(fileData,'start')
+  console.log(fileData,'start')
 </script>
 
 <style>
@@ -18,13 +18,13 @@
 		<table class="collapse ba br2 b--black-10 pv2 ph3 mt4">
 		  <thead>
 			<tr class="striped--near-white">
-			  <th class="pv2 ph3">Row Data</th>
+			  <th class="pv2 ph3">Data Sets</th>
 			</tr>
 		  </thead>
 		  <tbody>
 			{#each fileData as line}
 			  <tr class="striped--near-white">
-				<td class="pv2 ph3">{JSON.stringify(line)}</td>
+				<td class="pv2 ph3"><a>{line.table_name}</a></td>
 			  </tr>
 			{/each}
 		  </tbody>
