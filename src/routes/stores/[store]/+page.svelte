@@ -15,19 +15,20 @@
 	}
 	export let data;
 	
-	const store = data.csvData.store
-	const storeData = data.csvData.storeData
-	
+	const store = data.storeSD.store
+	const storeData = data.storeSD.storeData
+  console.log('storeData: ',storeData)	
+  //console.log('store: ',store)
 	//group data
-    var dayList = d3.rollups(storeData,v => v.length,d => d.weekDays).map(d => d[0]);
+  var dayList = d3.rollups(storeData,v => v.length,d => d['Week days']).map(d => d[0]);
 	
 	
-	let saleUnits = sumSeries(storeData, 'qty',) 
+	let saleUnits = sumSeries(storeData, 'Qty',) 
 	let UPT = saleUnits / storeData.length
-	let sales = sumSeries(storeData, 'totalSales')
-	let cost = sumSeries(storeData, 'cost') / storeData.length
+	let sales = sumSeries(storeData, 'Total Sales')
+	let cost = sumSeries(storeData, 'Cost') / storeData.length
 	
-	var pdtListStore = d3.rollups(storeData,v => v.length,d => d.product).map(d => d[0])
+	var pdtListStore = d3.rollups(storeData,v => v.length,d => d.Product).map(d => d[0])
 	
 	function shortenName(name){
 		let nameLen = name.split(' ').length;
@@ -44,10 +45,10 @@
 	
 	var pdtPerformance = pdtListStore.map(c =>({
 				product:shortenName(c),
-	 			sales: sumSeries(storeData,'totalSales',c,'product'),
-				cost: sumSeries(storeData,'cost',c,'product')
+	 			sales: sumSeries(storeData,'Total Sales',c,'Product'),
+				cost: sumSeries(storeData,'Cost',c,'Product')
 			})).sort((a,b) => d3.descending(a.sales, b.sales)).slice(0,10)
-	console.log(pdtPerformance)
+	//console.log(pdtPerformance)
 	
 </script>	
 

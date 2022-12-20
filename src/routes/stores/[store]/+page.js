@@ -2,16 +2,28 @@ import parsers from "$lib/parsers"
 import { csv } from "d3"
 
 export const load = async ({params,fetch})=>{
-	
-	const csvData = async(id) =>{
-			const subDo = params.store;
-			const res = await fetch('/serveComplex')
-			const csvServed = await res.json()
-	//		console.log(csvServed.data[0], csvServed.data1[0])
-			return{ store:subDo, storeData:csvServed.salesData.filter(d => d['stores'] == subDo)}
-		}
+      const salesData = async(id) =>{
+			const subDo = id;
+      const url = 'http://localhost:5173/dbtable';
+      const options = {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json;charset=UTF-8'
+        },
+        body: JSON.stringify({
+          tableName: "sales_performance_csv"
+        })
+       };
+      const res = await fetch(url,options)
+      const dataServed = await res.json()
+      //console.log(dataServed)
+      const dataFiltered = dataServed.yourTable.filter(d => d['Stores'] == subDo)
+      //console.log(dataFiltered)
+			return{ store:subDo, storeData:dataFiltered }
 
+      }
 		return {
-			csvData: csvData(params.store),
+			storeSD: salesData(params.store)
 		};
-}; 
+  }
