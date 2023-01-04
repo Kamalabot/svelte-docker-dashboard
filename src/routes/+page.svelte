@@ -5,6 +5,8 @@
   export let data;
   //console.log(data.chartData[0].data)
 	//console.log(data.chartData[1].data)
+  import bseScripts from "$lib/bseScripts.json" 
+  console.log(bseScript)
 </script>
 
 <h1 data-theme="cmyk" class="text-5x1 font-bold text-center">Welcome to the Repo</h1>
