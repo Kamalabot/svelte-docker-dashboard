@@ -16,13 +16,11 @@ export const load = async ({fetch})=>{
     const res = await fetch(url,options)
     const dataRecd = await res.json()
     const parsedData = parsers.historicUS(dataRecd.yourTable)
-    console.log(bseScripts,'json imported')
     return parsedData
   }
     const fetchGap = async()=>{
 	const gapRes = await fetch('https://kamalabot.github.io/M3nD3/ObservableData/gapminder.json')
 	const gapminder = await gapRes.json() 
-	console.log(gapminder)
 	return gapminder
     }
   //console.log(fetchData())
