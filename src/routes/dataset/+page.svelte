@@ -3,6 +3,7 @@
   export let data;
 	//console.log(data.tableData)
   var tablename = data.tableData.tableNames
+  var cp_tables = data.tableData.cp_tables
 </script>
 
 <h1 data-theme="cmyk" class="text-5x1 font-bold text-center">List of Datasets present in the Database</h1>
@@ -14,4 +15,4 @@
     dynamic visuals, dashboards and other complex charts.</p>
 </div>
 
-<Table fileData={tablename} /> 
+<Table fileData={tablename} /> <Table fileData={cp_tables} /> 

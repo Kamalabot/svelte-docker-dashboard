@@ -26,7 +26,6 @@ export const load = async ({fetch})=>{
   //console.log(fetchData())
   return {
       chartData: fetchData(),
-      gapData: fetchGap(),
       color:'green',
       title:'Covid Status in US',
       xVar:'x',

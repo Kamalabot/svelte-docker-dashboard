@@ -15,9 +15,15 @@
     	return sum
 	}
 	export let data;
-	const dashboardData = data.progressCleaned
-	console.log(dashboardData)
-	
+	console.log(data.month_data.yourTable,'location_data')
+  const months = data.month_data.yourTable.map(x => x.month)
+  const location = data.location_data.yourTable.map(x => x.location)
+  const reps = data.reps_data.yourTable.map(x => x.sales_reps)
+  
+  const total_sales = sumSeriesWoF(data.month_data.yourTable, 'monthly_sales') 
+  const total_qty = sumSeriesWoF(data.month_data.yourTable,'monthly_qty')
+  const total_cost = sumSeriesWoF(data.month_data.yourTable, 'monthly_cogs')
+  console.log(total_cost)	
 </script>	
 
 <html class="h-full bg-gray-100">
@@ -25,19 +31,19 @@
 <div>
   <header class="bg-white">
     <div class="flex mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8 gap-8">
-      <h1 class="text-3xl font-bold tracking-tight text-gray-900">Sale Performance Dashboard</h1>
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900">Company Progress Data</h1>
 		<div class="dropdown">
-			<label tabindex="0" class="btn m-1">Store List</label>
+			<label tabindex="0" class="btn m-1">Month</label>
 			<ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-			{#each storeList as store}
-			  <li><Alink location={'stores'} variable={store}/></li>
+			{#each months as mon}
+			  <li><Alink location={'month'} variable={mon}/></li>
 			{/each}
 			</ul>
 		</div>
 		<div class="dropdown">
 			<label tabindex="0" class="btn m-1">Executives</label>
 			<ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-			{#each repList as rep}
+			{#each reps as rep}
 			  <li><Alink location={'reps'} variable={rep}/></li>
 			{/each}
 			</ul>
@@ -47,22 +53,22 @@
 <div class="flex justify-center gap-4 p-6 h-96">
 	<div class="flex-auto card w-96 bg-base-100 shadow-xl">
 	  <div class="card-body">
-		<h2 class="card-title">Sales $</h2>
-		<figure><BarPlotV0 width={250} height={200} chartData={dashboardData} xVar={"month"} yVar={"totalSales"} color={'orange'} label={""} class="bg-primary" /></figure>
+		<h2 class="card-title">Monthly Sales $</h2>
+		<figure><BarPlotV0 width={250} height={200} chartData={data.month_data.yourTable} xVar={"month"} yVar={"monthly_sales"} color={'green'} label={""} class="bg-primary" /></figure>
 		<p>Monthly Sales Performance</p>
 	  </div>
 	</div>
 	<div class="flex-auto card w-96 bg-base-100 shadow-xl">
 	  <div class="card-body">
 		<h2 class="card-title">Gross Margin</h2>
-		<figure><BarPlotV0 width={250} height={200} chartData={dashboardData} xVar={"month"} yVar={"grossProfit"} color={'orange'} label={""} class="bg-primary" /></figure>
+		<figure><BarPlotV0 width={250} height={200} chartData={data.month_data.yourTable} xVar={"month"} yVar={"monthly_profit"} color={'blue'} label={""} class="bg-primary" /></figure>
 		<p>Monthly Gross Margin Performance</p>
 	  </div>
 	</div>
 	<div class="flex-auto card w-96 bg-base-100 shadow-xl">
 	  <div class="card-body">
 		<h2 class="card-title">Cost $</h2>
-		<figure><BarPlotV0 width={250} height={200} chartData={dashboardData} xVar={"month"} yVar={"cogs"} color={'orange'} label={""} class="bg-primary" /></figure>
+		<figure><BarPlotV0 width={250} height={200} chartData={data.month_data.yourTable} xVar={"month"} yVar={"monthly_cogs"} color={'red'} label={""} class="bg-primary" /></figure>
 		<p>Monthly Cost of Goods Sold</p>
 	  </div>
 	</div>
@@ -70,33 +76,33 @@
 <div class="flex justify-center gap-4 p-6 h-96">
 	<div class="flex-auto card w-96 bg-base-100 shadow-xl">
 	  <div class="card-body">
-		<h2 class="card-title">Sales/ Day</h2>
-		<figure><BarPlotV0 width={250} height={200} chartData={dashboardData} xVar={"weekDays"} yVar={"totalSales"} color={'orange'} label={""} class="bg-primary" /></figure>
-		<p>Sales Performance of the Store</p>
+		<h2 class="card-title">Sales Per Location</h2>
+		<figure><BarPlotV0 width={250} height={200} chartData={data.location_data.yourTable} xVar={"location"} yVar={"location_sales"} color={'orange'} label={""} class="bg-primary" /></figure>
+		<p>Sales Performance of the Location</p>
 	  </div>
 	</div>
 	<div class="w-64 bg-base-100 shadow-xl">  
 		  <div class="stat">
-			<div class="stat-title">Unit/Txn</div>
-			<div class="stat-value text-primary">{UPT.toFixed(1)}</div>
-			<div class="stat-desc">How Many / txn?</div>
+			<div class="stat-title">Total_transaction</div>
+			<div class="stat-value text-primary">{total_qty}</div>
+			<div class="stat-desc">How Much qty?</div>
 		  </div>
 		  <div class="stat">
-			<div class="stat-title">Sales Units</div>
-			<div class="stat-value text-secondary">{saleUnits}</div>
-			<div class="stat-desc">Total Units</div>
+			<div class="stat-title">Total Sales</div>
+			<div class="stat-value text-secondary">{total_sales}</div>
+			<div class="stat-desc">Revenue</div>
 		  </div>
 		  <div class="stat">
-			<div class="stat-title">Cost$ / Txn</div>
-			<div class="stat-value text-secondary">{cost.toFixed(1)}</div>
-			<div class="stat-desc">At cost / Txn?</div>
+			<div class="stat-title">Cost of Goods</div>
+			<div class="stat-value text-secondary">{total_cost}</div>
+			<div class="stat-desc">Cost of Goods Sold</div>
 		  </div>
 	</div>
 	<div class="flex-auto card w-96 bg-base-100 shadow-xl">
 	  <div class="card-body">
-		<h2 class="card-title">Units Sold Trend Daily</h2>
-		<figure><BarPlotV0 width={250} height={200} chartData={dashboardData} xVar={"weekDays"} yVar={"qty"} color={'orange'} label={""} class="bg-primary" /></figure>
-		<p>Ads usage of the Store</p>
+		<h2 class="card-title">Units Sold per Product</h2>
+		<figure><BarPlotV0 width={250} height={200} chartData={data.product_data.yourTable} xVar={"product"} yVar={"product_qty"} color={'orange'} label={""} class="bg-primary" /></figure>
+		<p>Sales of Each product</p>
 	  </div>
 	</div>
 </div>
@@ -104,7 +110,7 @@
 	<div class="flex-auto card w-96 bg-base-100 shadow-xl">
 	  <div class="card-body">
 		<h2 class="card-title">Sales Performance</h2>
-		<figure><TableV1 fileData={storePerformance}/></figure>
+		<figure><figure>
 	  </div>
 	</div>
 </div>
@@ -112,7 +118,7 @@
 	<div class="flex-auto card w-64 h-96 bg-base-100 shadow-xl">
 	  <div class="card-body">
 		<h2 class="card-title">Sales and Cost of Top 10 products</h2>
-		<figure><GroupbarPlot width={400} height={300} chartData={pdtPerformance} refVar={'product'} aVar={'sales'} bVar={'cost'} /></figure>
+		<figure><GroupbarPlot width={400} height={300} chartData={data.product_data.yourTable} refVar={'product'} aVar={'product_sales'} bVar={'product_cogs'} /></figure>
 	  </div>
 	</div>
 </div>
