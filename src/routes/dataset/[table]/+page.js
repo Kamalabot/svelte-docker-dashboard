@@ -25,7 +25,7 @@ export const load = async ({params,fetch})=>{
       const url = 'http://localhost:5173/tablelist';
       const res = await fetch(url)
       const dataRecd = await res.json()
-      return dataRecd.tableNames
+      return dataRecd
       }
 
 		return {

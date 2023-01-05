@@ -1,5 +1,6 @@
 <script>
 	import Table from "$lib/Table.svelte";
+  import Alink from "$lib/Alink.svelte";
   export let data;
 	//console.log(data.tableData)
   var tablename = data.tableData.tableNames
@@ -15,4 +16,21 @@
     dynamic visuals, dashboards and other complex charts.</p>
 </div>
 
-<Table fileData={tablename} /> <Table fileData={cp_tables} /> 
+<div class="flex mx-auto py-6 px-4 gap-8">
+  <div class='dropdown'>
+    <label tabindex="0" class="btn m-1">Test DB</label>
+    <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+      {#each tablename as table}
+        <li><Alink location={'dataset'} variable={table.table_name}/></li>
+      {/each}
+    </ul>
+  </div>
+  <div class='dropdown'>
+      <label tabindex="0" class="btn m-1">Company Progress DB</label>
+      <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+        {#each cp_tables as cp_table}
+          <li><Alink location={'dataset'} variable={cp_table.table_name}/></li>
+        {/each}
+      </ul>
+  </div>
+</div>
