@@ -4,7 +4,7 @@ import { csv, timeParse, format } from "d3"
 export const load = async ({params,fetch})=>{
     const tableData = async(id) =>{
       console.log(id)
-      const url = 'http://localhost:5173/dbtable';
+      const url = 'http://localhost:5173/dbcompany_prog';
       const options = {
         method: 'POST',
         headers: {
