@@ -27,9 +27,6 @@
 		const refData = chartData.map(d => d[refVar]);
 		
 		const maxVal = d3.max([d3.max(aData),d3.max(bData)])
-		console.log(aData)
-		console.log(bData)
-		console.log(maxVal)
 		const numberFormat = d3.format(".2s");
 	
 		  // this scale will be used to position the groups for each month
