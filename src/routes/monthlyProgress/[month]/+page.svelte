@@ -15,20 +15,20 @@
     	return sum
 	}
 	export let data;
-  const months = data.month_data.yourTable.map(x => x.month)
-  const location = data.location_data.yourTable.map(x => x.location)
-  const reps = data.reps_data.yourTable.map(x => x.sales_reps)
+  console.log(data)
+  const location = data.location_monthly.map(x => x.location)
+  const reps = data.reps_monthly.map(x => x.sales_reps)
   
-  const total_sales = numberFormat(sumSeriesWoF(data.month_data.yourTable, 'monthly_sales')) 
-  const total_qty = numberFormat(sumSeriesWoF(data.month_data.yourTable,'monthly_qty'))
-  const total_cost = numberFormat(sumSeriesWoF(data.month_data.yourTable, 'monthly_cogs'))
-  const total_profit = numberFormat(sumSeriesWoF(data.month_data.yourTable, 'monthly_profit'))
-  const total_payment = numberFormat(sumSeriesWoF(data.month_data.yourTable, 'monthly_payment'))
-  const total_target = numberFormat(sumSeriesWoF(data.month_data.yourTable, 'monthly_target'))
+  const total_sales = numberFormat(sumSeriesWoF(data.month_data, 'monthly_sales')) 
+  const total_qty = numberFormat(sumSeriesWoF(data.month_data,'monthly_qty'))
+  const total_cost = numberFormat(sumSeriesWoF(data.month_data, 'monthly_cogs'))
+  const total_profit = numberFormat(sumSeriesWoF(data.month_data, 'monthly_profit'))
+  const total_payment = numberFormat(sumSeriesWoF(data.month_data, 'monthly_payment'))
+  const total_target = numberFormat(sumSeriesWoF(data.month_data, 'monthly_target'))
 
-  const top_product = data.product_data.yourTable.slice(0,3)
-  const least_product = data.product_data.yourTable.slice(-3)
-  console.log(least_product[0].products)
+  const top_product = data.pdt_monthly.slice(0,3)
+  const least_product = data.pdt_monthly.slice(-3)
+  console.log(least_product[0])
 </script>	
 
 <html class="h-full bg-gray-100">
@@ -38,13 +38,8 @@
     <div class="flex mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8 gap-8">
       <h1 class="text-3xl font-bold tracking-tight text-gray-900">Company Progress Data</h1>
 		<div class="dropdown">
-			<label tabindex="0" class="btn m-1">Month</label>
-			<ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-			{#each months as mon}
-			  <li><Alink location={'monthlyProgress'} variable={mon}/></li>
-			{/each}
-			</ul>
-		</div>
+			<label tabindex="0" class="btn m-1"><a href="/companyProgress">Main Dashboard</a></label>
+    </div>
 	</header>
 </div>
 <div class="flex justify-center gap-4 p-6 h-24">  
@@ -82,8 +77,8 @@
     <div class="flex-auto card w-96 bg-base-100 shadow-xl">
       <div class="card-body">
       <h2 class="card-title">Gross Margin</h2>
-      <figure><BarPlotV0 width={450} height={200} chartData={data.month_data.yourTable} xVar={"month"} yVar={"monthly_profit"} color={'blue'} label={""} class="bg-primary" /></figure>
-      <p>Monthly Gross Margin Performance</p>
+      <figure><BarPlotV0 width={450} height={200} chartData={data.reps_monthly} xVar={"sales_reps"} yVar={"monthly_profit"} color={'blue'} label={""} class="bg-primary" /></figure>
+      <p>Monthly Gross Profit / Sales Rep</p>
       </div>
     </div>
 </div>
@@ -91,7 +86,7 @@
 	<div class="flex-auto card w-96 bg-base-100 shadow-xl">
 	  <div class="card-body">
 		<h2 class="card-title">Sales Per Location</h2>
-		<figure><BarPlotV0 width={650} height={200} chartData={data.location_data.yourTable} xVar={"location"} yVar={"location_sales"} color={'orange'} label={""} class="bg-primary" /></figure>
+		<figure><BarPlotV0 width={650} height={200} chartData={data.location_monthly} xVar={"location"} yVar={"location_sales"} color={'orange'} label={""} class="bg-primary" /></figure>
 		<p>Sales Performance of the Location</p>
 	  </div>
 	</div>
@@ -133,7 +128,7 @@
 	<div class="flex-auto card w-64 h-96 bg-base-100 shadow-xl">
 	  <div class="card-body">
 		<h2 class="card-title">Sales and Cost of Top 10 products</h2>
-		<figure><GroupbarPlot width={700} height={260} chartData={data.product_data.yourTable} refVar={'products'} aVar={'product_sales'} bVar={'product_cogs'} /></figure>
+		<figure><GroupbarPlot width={700} height={260} chartData={data.pdt_monthly} refVar={'products'} aVar={'product_sales'} bVar={'product_cogs'} /></figure>
 	  </div>
 	</div>
 </div>
