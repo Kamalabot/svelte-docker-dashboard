@@ -16,6 +16,7 @@
 	}
 	export let data;
 	const dashboardData = data.salesCleaned
+	//group data
 	var storeList= d3.rollups(dashboardData,v => v.length,d => d.stores).map(d => d[0]);
     var repList = d3.rollups(dashboardData,v => v.length,d => d.reps).map(d => d[0]);
     var dayList = d3.rollups(dashboardData,v => v.length,d => d.weekDays).map(d => d[0]);

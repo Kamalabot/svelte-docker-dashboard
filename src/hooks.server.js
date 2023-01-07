@@ -12,7 +12,7 @@ export const handle = async ({ event, resolve }) => {
     idle_timeout: 10,
     max_lifetime: 60 * 10});
 	
-  const company_prog= postgres(`postgres://postgres:1234@192.168.181.229:5432/company_progress`,{
+  const company_prog= postgres(`postgres://postgres:1234@192.168.111.229:5432/company_progress`,{
     idle_timeout: 10,
     max_lifetime: 60 * 10});
 

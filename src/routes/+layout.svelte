@@ -12,6 +12,8 @@
 	  <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
 		<li><a href="/performanceDB">Sales Performance Dashboard</a></li>
     <li><a href="/companyProgress">Company Progress Dashboard</a></li>
+    <li><a href="/amazon_ra">Amazon Delivery Agent Dashboard</a></li>
+    <li><a href="/glassdoor">Glassdoor Datascientist Openings</a></li>
 	  </ul>
 	</div>
 	<div class="dropdown">

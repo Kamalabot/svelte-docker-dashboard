@@ -28,7 +28,7 @@
 
   const top_product = data.pdt_monthly.slice(0,3)
   const least_product = data.pdt_monthly.slice(-3)
-  console.log(least_product[0])
+  console.log(data.reps_monthly)
 </script>	
 
 <html class="h-full bg-gray-100">
@@ -77,7 +77,7 @@
     <div class="flex-auto card w-96 bg-base-100 shadow-xl">
       <div class="card-body">
       <h2 class="card-title">Gross Margin</h2>
-      <figure><BarPlotV0 width={450} height={200} chartData={data.reps_monthly} xVar={"sales_reps"} yVar={"monthly_profit"} color={'blue'} label={""} class="bg-primary" /></figure>
+      <figure><BarPlotV0 width={450} height={200} chartData={data.reps_monthly} xVar={"sales_reps"} yVar={"reps_profit"} color={'blue'} label={""} class="bg-primary" /></figure>
       <p>Monthly Gross Profit / Sales Rep</p>
       </div>
     </div>
