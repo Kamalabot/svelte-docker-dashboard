@@ -15,20 +15,7 @@
     	return sum
 	}
 	export let data;
-  const months = data.month_data.yourTable.map(x => x.month)
-  const location = data.location_data.yourTable.map(x => x.location)
-  const reps = data.reps_data.yourTable.map(x => x.sales_reps)
-  
-  const total_sales = numberFormat(sumSeriesWoF(data.month_data.yourTable, 'monthly_sales')) 
-  const total_qty = numberFormat(sumSeriesWoF(data.month_data.yourTable,'monthly_qty'))
-  const total_cost = numberFormat(sumSeriesWoF(data.month_data.yourTable, 'monthly_cogs'))
-  const total_profit = numberFormat(sumSeriesWoF(data.month_data.yourTable, 'monthly_profit'))
-  const total_payment = numberFormat(sumSeriesWoF(data.month_data.yourTable, 'monthly_payment'))
-  const total_target = numberFormat(sumSeriesWoF(data.month_data.yourTable, 'monthly_target'))
-
-  const top_product = data.product_data.yourTable.slice(0,3)
-  const least_product = data.product_data.yourTable.slice(-3)
-  console.log(least_product[0].products)
+  console.log(data)
 </script>	
 
 <html class="h-full bg-gray-100">
@@ -62,7 +49,7 @@
 		</div>
 </div>
 <div class="flex justify-center gap-4 p-6 h-96">
-  <div class="w-64 card bg-base-100 shadow-xl">  
+  <div class="w-64 bg-base-100 shadow-xl">  
     <div class="stat">
       <div class="stat-title">total_transaction</div>
       <div class="stat-value text-primary">{total_qty}</div>

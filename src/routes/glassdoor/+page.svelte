@@ -33,7 +33,7 @@
 		</div>
 	</header>
 </div>
-<div class="flex justify-center gap-4 p-6 h-48">  
+<div class="flex justify-center gap-4 p-6 h-36">  
 		<div class="stat">
 			<div class="stat-title">Python Required</div>
 			<div class="stat-value text-primary"><span>Yes: </span><span>{tools_data[1].python_reqd}</span></div>
@@ -60,16 +60,16 @@
       <div class="stat-value text-primary"><span>No: </span><span>{tools_data[0].r_reqd}</span></div>
 		</div>
 </div>
-<div class="flex justify-center gap-4 p-6 h-96">
+<div class="flex justify-center gap-4 p-2 h-84">
   <div class="flex-auto card w-96 bg-base-100 shadow-xl">
     <div class="card-body">
       <h2 class="card-title">Opportunity By Title</h2>
-      <figure><BarPlotV0 width={450} height={200} chartData={opt_data.slice(0,10)} xVar={"job_title"} yVar={"title_count"} color={'blue'} label={""} class="bg-primary" /></figure>
+      <figure><BarPlotV0 width={450} height={250} chartData={opt_data.slice(0,10)} xVar={"job_title"} yVar={"title_count"} color={'blue'} label={""} class="bg-primary" /></figure>
       <p>Openings as per the title related to data work</p>
       </div>
     </div>
 </div>
-<div class="flex justify-center gap-4 p-6 h-96">
+<div class="flex justify-center gap-4 p-2 h-96">
 	<div class="flex-auto card w-96 bg-base-100 shadow-xl">
 	  <div class="card-body">
 		<h2 class="card-title">Max Salary quoted</h2>
@@ -85,7 +85,7 @@
 	  </div>
 	</div>
 </div>
-<div class="flex justify-center gap-4 p-6 h-96">
+<div class="flex justify-center gap-4 p-2 h-96">
 	<div class="flex-auto card w-96 bg-base-100 shadow-xl">
 	  <div class="card-body">
 		<h2 class="card-title">Opportunity by Location</h2>
@@ -94,11 +94,11 @@
 	  </div>
 	</div>
 </div>
-<div class="flex justify-center gap-4 p-6 h-96">
+<div class="flex justify-center gap-4 p-2 h-96">
 	<div class="flex-auto card w-64 h-96 bg-base-100 shadow-xl">
 	  <div class="card-body">
 		<h2 class="card-title">Openings in Company</h2>
-		<figure><BarPlotV0 width={700} height={260} chartData={opc_data.slice(0,15)} xVar={'company_name'} yVar={'count_per_company'} color={'green'} label={""} class="bg-primary" /></figure>
+		<figure><BarPlotV0 width={700} height={300} chartData={opc_data.slice(0,15)} xVar={'company_name'} yVar={'count_per_company'} color={'green'} label={""} class="bg-primary" /></figure>
 	  </div>
 	</div>
 </div>

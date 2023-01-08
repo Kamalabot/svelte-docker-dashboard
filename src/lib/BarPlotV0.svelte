@@ -28,7 +28,7 @@
 
 	function barPlot(width, height, chartData,xVar,yVar,color,label){
 
-		const margin = { left: 40, right: 20, top: 10, bottom: 30 };
+		const margin = { left:50, right: 10, top: 5, bottom: 45 };
 		const visHeight = height - margin.top - margin.bottom;
 		const visWidth = width - margin.right - margin.left;
 
