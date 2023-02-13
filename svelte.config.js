@@ -10,10 +10,7 @@ const config = {
     }),
   ],
 	kit: {
-		adapter: adapter(),
-  csrf: {
-      checkOrigin: false,
-    } 
+    adapter: adapter({out:'build'})
 	},
 };
 
